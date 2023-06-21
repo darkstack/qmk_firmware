@@ -1,0 +1,3 @@
+VIA_ENABLE = yes
+MOUSEKEY_ENABLE = yes
+LED_WIN_LOCK_PIN = yes
