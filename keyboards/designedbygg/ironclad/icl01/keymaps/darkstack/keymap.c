@@ -60,6 +60,8 @@ __attribute__((weak)) bool rgb_matrix_indicators_advanced_user(uint8_t led_min, 
         RGB_MATRIX_INDICATOR_SET_COLOR(57,255,0,0)
     if (host_keyboard_led_state().scroll_lock)
         RGB_MATRIX_INDICATOR_SET_COLOR(14,255,0,0)
+    if (host_keyboard_led_state().num_lock)
+        RGB_MATRIX_INDICATOR_SET_COLOR(33,255,0,0)
 
     bool change = false;
     RGB rgb = {0, 0, 0};
