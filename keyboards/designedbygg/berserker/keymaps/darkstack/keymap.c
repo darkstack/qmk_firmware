@@ -85,25 +85,36 @@ const uint16_t PROGMEM encoder_map[][1][2] = {
 };
 #endif
 
-bool rgb_matrix_indicators_user(void) {
-        //Caps Lock 
-        if (host_keyboard_led_state().caps_lock) 
-            rgb_matrix_set_color(49, 255, 0, 0);
+__attribute__((weak)) bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
-        if (host_keyboard_led_state().scroll_lock) 
-            rgb_matrix_set_color(14, 255, 0, 0);
-        
-        //Layer 1 goes Blue
-        if(layer_state_is( _SECOND))
-            rgb_matrix_set_color_all(0, 0, 255);
-        //Layer 2 goes Green
-        if(layer_state_is(_THIRD))
-            rgb_matrix_set_color_all(0, 255, 0);
-        return false;
+    if (host_keyboard_led_state().caps_lock)
+        RGB_MATRIX_INDICATOR_SET_COLOR(49,255,0,0)
+    if (host_keyboard_led_state().scroll_lock)
+        RGB_MATRIX_INDICATOR_SET_COLOR(14,255,0,0)
+
+    bool change = false;
+    RGB rgb = {0, 0, 0};
+
+    if (layer_state_is(_SECOND)) {
+        rgb.g = 255;
+        change = true;
+    } 
+    if(layer_state_is(_THIRD)) {
+        rgb.g = 0;
+        rgb.b = 255;
+        change = true;
+    }
+
+    if(change)
+        for (uint8_t i = led_min; i < led_max; i++) {
+            
+            if(HAS_FLAGS(g_led_config.flags[i],LED_FLAG_MODIFIER) | (i == 49))
+                rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+        }
+
+    return true;
 }
 
+
 void keyboard_post_init_user(void) {
-    rgb_matrix_enable_noeeprom();
-    rgb_matrix_set_color_all(255,0,0);
-    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_SIMPLE);
 }
