@@ -108,7 +108,7 @@ __attribute__((weak)) bool rgb_matrix_indicators_advanced_user(uint8_t led_min, 
     if(change)
         for (uint8_t i = led_min; i < led_max; i++) {
             
-            if(HAS_FLAGS(g_led_config.flags[i],LED_FLAG_MODIFIER) | (i == 49))
+            if(HAS_FLAGS(g_led_config.flags[i],LED_FLAG_MODIFIER))
                 rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
         }
 

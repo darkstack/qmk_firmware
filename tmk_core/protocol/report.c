@@ -288,6 +288,12 @@ void clear_keys_from_report(report_keyboard_t* keyboard_report) {
  * @return bool result
  */
 __attribute__((weak)) bool has_mouse_report_changed(report_mouse_t* new_report, report_mouse_t* old_report) {
-    return memcmp(new_report, old_report, sizeof(report_mouse_t));
+    //return memcmp(new_report, old_report, sizeof(report_mouse_t));
+    bool changed = ((new_report->buttons != old_report->buttons) ||
+#    ifdef MOUSE_EXTENDED_REPORT
+                    (new_report->boot_x != 0 && new_report->boot_x != old_report->boot_x) || (new_report->boot_y != 0 && new_report->boot_y != old_report->boot_y) ||
+#    endif
+                    (new_report->x != 0 && new_report->x != old_report->x) || (new_report->y != 0 && new_report->y != old_report->y) || (new_report->h != 0 && new_report->h != old_report->h) || (new_report->v != 0 && new_report->v != old_report->v));
+    return changed;
 }
 #endif
