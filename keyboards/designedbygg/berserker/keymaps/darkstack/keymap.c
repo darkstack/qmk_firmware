@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_SECOND] = LAYOUT_tkl_iso(
         QK_BOOT,         KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, KC_KB_MUTE, _______, KC_MEDIA_PLAY_PAUSE, KC_MEDIA_PREV_TRACK, KC_MEDIA_NEXT_TRACK, _______, _______, _______, QK_REBOOT, RGB_TOG,    _______, _______, _______,
 
-        _______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,      _______, _______, _______,
+        _______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,      _______, _______, RGB_VAI,
         KC_MS_BTN3, KC_MS_BTN1, KC_MS_UP, KC_MS_BTN2, _______, _______, _______, _______, _______, _______, _______, RALT(KC_5), RALT(KC_MINS),                     _______, _______, _______,
         _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _______, _______, _______, _______, _______, _______, _______, RALT(KC_4), RALT(KC_EQL),      _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          MO(2),             RGB_MOD,
