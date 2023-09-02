@@ -209,7 +209,7 @@ void config_save(void) {
 }
 
 
-void  via_custom_value_command(uint8_t *data,uint8_t length){
+void via_custom_value_command_kb(uint8_t *data,uint8_t length){
     uint8_t *command_id        = &(data[0]);
     uint8_t *channel_id        = &(data[1]);
     uint8_t *value_id_and_data = &(data[2]);

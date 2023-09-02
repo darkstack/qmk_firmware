@@ -4,11 +4,12 @@
   "productId": "0x5042",
   "keycodes": ["qmk_lighting"],
   "menus": [
+    "qmk_rgb_matrix",
     {
-      "label": "Indicators",
+      "label": "indicators",
       "content": [
         {
-          "label": "Caps Lock",
+          "label": "caps lock",
           "content": [
             {
               "label": "Enable",
