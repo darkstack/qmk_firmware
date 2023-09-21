@@ -15,21 +15,11 @@
  */
 
 #pragma once
-
-/* Board and GPIO setup */
-#ifndef RGB_MATRIX_ENABLE
-#    define WAIT_US_TIMER GPTD2
-#endif
-#define MATRIX_UNSELECT_DRIVE_HIGH
-#define MATRIX_IO_DELAY 1
-#define GPIO_INPUT_PIN_DELAY 0
-
-/* Debug options */
-//#define DEBUG_MATRIX_SCAN_RATE
-
-/* Disable RGB lighting when PC is in suspend */
-#define RGB_DISABLE_WHEN_USB_SUSPENDED
-
-/* RGB Matrix Effects */
-#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-#define RGB_MATRIX_KEYPRESSES
+#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE;
+#define WEAR_LEVELING_SN32_EMULATION_PAGE_COUNT 32
+// Enable RGB Matrix
+#define VIA_QMK_RGBLIGHT_ENABLE
+#define DYNAMIC_KEYMAP_LAYER_COUNT 2 
+#define CAPS_LOCK_INDEX 57
+#define NUM_LOCK_INDEX 33
+#define EECONFIG_KB_DATA_SIZE 16

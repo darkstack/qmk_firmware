@@ -14,22 +14,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
-
-/* Board and GPIO setup */
 #ifndef RGB_MATRIX_ENABLE
-#    define WAIT_US_TIMER GPTD2
+#define HAL_USE_GPT TRUE
+#define SN32_GPT_USE_CT16B1 TRUE
+#include_next <halconf.h>
+#undef HAL_USE_PWM
+#define HAL_USE_PWM FALSE
+#else
+#include_next <halconf.h>
 #endif
-#define MATRIX_UNSELECT_DRIVE_HIGH
-#define MATRIX_IO_DELAY 1
-#define GPIO_INPUT_PIN_DELAY 0
-
-/* Debug options */
-//#define DEBUG_MATRIX_SCAN_RATE
-
-/* Disable RGB lighting when PC is in suspend */
-#define RGB_DISABLE_WHEN_USB_SUSPENDED
-
-/* RGB Matrix Effects */
-#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-#define RGB_MATRIX_KEYPRESSES

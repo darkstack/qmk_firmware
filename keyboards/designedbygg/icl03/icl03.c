@@ -14,22 +14,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
-
-/* Board and GPIO setup */
+#include "quantum.h"
 #ifndef RGB_MATRIX_ENABLE
-#    define WAIT_US_TIMER GPTD2
+void matrix_output_unselect_delay(uint8_t line, bool key_pressed) {
+    for (int i = 0; i < TIME_US2I(MATRIX_IO_DELAY); ++i) {
+        __asm__ volatile("" ::: "memory");
+    }
+}
 #endif
-#define MATRIX_UNSELECT_DRIVE_HIGH
-#define MATRIX_IO_DELAY 1
-#define GPIO_INPUT_PIN_DELAY 0
+#ifdef LED_WIN_LOCK_PIN
+/* Handle the Win Lock LED */
+void keyboard_pre_init_kb(void) {
+	setPinOutput(LED_WIN_LOCK_PIN);
+	writePin(LED_WIN_LOCK_PIN, !LED_PIN_ON_STATE);
+}
 
-/* Debug options */
-//#define DEBUG_MATRIX_SCAN_RATE
-
-/* Disable RGB lighting when PC is in suspend */
-#define RGB_DISABLE_WHEN_USB_SUSPENDED
-
-/* RGB Matrix Effects */
-#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-#define RGB_MATRIX_KEYPRESSES
+void housekeeping_task_kb(void) {
+	writePin(LED_WIN_LOCK_PIN,!keymap_config.no_gui);
+}
+#endif
