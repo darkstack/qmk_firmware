@@ -34,7 +34,7 @@
 
 /* RGB LED Config */
 #define RGB_MATRIX_ROW_PINS { C0, C1, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, B6, B7, B8, B9, B10, B11}
-#define RGB_MATRIX_LED_COUNT (105)
+#define RGB_MATRIX_LED_COUNT (109)
 
 /* Disable RGB lighting when PC is in suspend */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
