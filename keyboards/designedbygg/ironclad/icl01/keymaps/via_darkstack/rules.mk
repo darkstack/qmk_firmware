@@ -1,4 +1,4 @@
-SRC += keyboards/designedbygg/common/common_via.c
+SRC += keyboards/designedbygg/common/common_via.c 
 
 VIA_ENABLE = yes
 MOUSEKEY_ENABLE = yes
