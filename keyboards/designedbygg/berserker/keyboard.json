@@ -5,10 +5,7 @@
     "processor": "SN32F248BF",
     "maintainer": "dexter93",
     "bootloader": "sn32-dfu",
-    "debounce": 20,
-    "build": {
-        "debounce_type": "sym_eager_pk",
-    },
+    "debounce": 5,
     "diode_direction": "COL2ROW",
     "features": {
         "rgb_matrix": true,
@@ -23,12 +20,12 @@
     "indicators": {
         "caps_lock": "B14",
         "scroll_lock": "B15",
-        "on_state": 0,
+        "on_state": 0
     },
     "encoder": {
         "rotary": [
-          { "pin_a": "D3", "pin_b": "D4", "resolution": 2 },
-        ],
+          { "pin_a": "D3", "pin_b": "D4", "resolution": 2 }
+        ]
     },
     "matrix_pins": {
         "cols": ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12", "A13", "A14", "B0", "B1"],
@@ -238,7 +235,7 @@
             {"matrix": [2, 15],"flags": 1,"x":211, "y":29},
             {"matrix": [2, 16],"flags": 1,"x":224, "y":29},
 
-            {"matrix": [3, 0],"flags": 8,"x":5, "y":41},
+            {"matrix": [3, 0],"flags": 1,"x":5, "y":41},
             {"matrix": [3, 1],"flags": 4,"x":23, "y":41},
             {"matrix": [3, 2],"flags": 4,"x":36, "y":41},
             {"matrix": [3, 3],"flags": 4,"x":49, "y":41},

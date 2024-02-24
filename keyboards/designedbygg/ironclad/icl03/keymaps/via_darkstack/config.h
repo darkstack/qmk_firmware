@@ -15,22 +15,11 @@
  */
 
 #pragma once
-
-//#include "config_common.h"
-
-/* Board and GPIO setup */
-#ifndef RGB_MATRIX_ENABLE
-#define WAIT_US_TIMER GPTD2
-#endif
-#define MATRIX_UNSELECT_DRIVE_HIGH
-#define MATRIX_IO_DELAY 1
-#define GPIO_INPUT_PIN_DELAY 0
-
-/* Debug options */
-
-/* Win Lock LED Indicator */
-#define LED_WIN_LOCK_PIN B12
-
-/* RGB LED Config */
-#define SN32F2XX_RGB_MATRIX_ROW_PINS { C0, C1, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, B6, B7, B8, B9, B10, B11 }
-#define RGB_MATRIX_LED_COUNT (88)
+#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE;
+#define WEAR_LEVELING_SN32_EMULATION_PAGE_COUNT 32
+// Enable RGB Matrix
+#define VIA_QMK_RGBLIGHT_ENABLE
+#define DYNAMIC_KEYMAP_LAYER_COUNT 3
+#define CAPS_LOCK_INDEX 61
+#define NUM_LOCK_INDEX 37
+#define EECONFIG_KB_DATA_SIZE 16
