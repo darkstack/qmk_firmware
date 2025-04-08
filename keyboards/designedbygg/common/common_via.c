@@ -1,9 +1,7 @@
-#if VIA_ENABLE
 #if (!(CAPS_LOCK_INDEX | NUM_LOCK_INDEX))
 #error "NO CAPS LOCK OR NUM LOCK DEFINED"
 #endif
 
-#include <via.h>
 #include "quantum.h"
 
 typedef struct _indicator_config_t {
@@ -20,7 +18,7 @@ typedef struct _designed_by_gg_config_t {
     indicator_config layer2;
 } designed_by_gg_config_t;
 
-designed_by_gg_config_t config; 
+designed_by_gg_config_t config;
 
 
 enum via_config_enums {
@@ -69,6 +67,12 @@ void keyboard_post_init_user(void) {
 }
 
 
+void config_save(void) {
+    eeconfig_update_kb_datablock(&config);
+}
+
+#if VIA_ENABLE
+#include <via.h>
 void config_set_value(uint8_t *data) {
     // data = [ value_id, value_data ]
     uint8_t *value_id   = &(data[0]);
@@ -197,10 +201,6 @@ void config_get_value(uint8_t *data) {
     }
 }
 
-void config_save(void) {
-    eeconfig_update_kb_datablock(&config);
-}
-
 
 void via_custom_value_command_kb(uint8_t *data,uint8_t length){
     uint8_t *command_id        = &(data[0]);
@@ -232,9 +232,9 @@ void via_custom_value_command_kb(uint8_t *data,uint8_t length){
 
     *command_id = id_unhandled;
 }
-
+#endif
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    
+
     bool change = false;
     RGB rgb = {0, 0, 0};
 
@@ -244,7 +244,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             rgb = hsv_to_rgb(config_color);
             change = true;
         }
-    } 
+    }
 
     if(layer_state_is(2)) {
         if(config.layer2.enabled){
@@ -260,7 +260,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
     if(change){
         for (uint8_t i = led_min; i < led_max; i++) {
-            
+
             if(HAS_FLAGS(g_led_config.flags[i],LED_FLAG_MODIFIER))
                 rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
         }
@@ -285,4 +285,3 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     return false;
 }
 
-#endif

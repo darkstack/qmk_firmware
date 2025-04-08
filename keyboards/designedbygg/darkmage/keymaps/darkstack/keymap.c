@@ -62,7 +62,6 @@ const uint16_t PROGMEM encoder_map[][1][2] = {
 };
 
 
-#include "../../../common/common_via.c"
 #endif
 
 
