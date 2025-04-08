@@ -281,6 +281,16 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
         RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_INDEX,rgb_color.r,rgb_color.g,rgb_color.b);
     }
+    #if WIN_LOCK_INDEX
+    if (config.num_lock.enabled && keymap_config.no_gui)
+    {
+        HSV config_color = {config.num_lock.h, config.num_lock.s, config.num_lock.v};
+        RGB rgb_color = hsv_to_rgb(config_color);
+
+        RGB_MATRIX_INDICATOR_SET_COLOR(WIN_LOCK_INDEX,rgb_color.r,rgb_color.g,rgb_color.b);
+    }
+    #endif
+
 
     return false;
 }
