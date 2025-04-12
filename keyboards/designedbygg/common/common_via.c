@@ -14,6 +14,9 @@ typedef struct _indicator_config_t {
 typedef struct _designed_by_gg_config_t {
     indicator_config caps_lock;
     indicator_config num_lock;
+    #if WIN_LOCK_INDEX
+    indicator_config win_key;
+    #endif
     indicator_config layer1;
     indicator_config layer2;
 } designed_by_gg_config_t;
@@ -33,7 +36,14 @@ enum via_config_enums {
     id_config_layer1_color = 9,
     id_config_layer2_enabled = 10,
     id_config_layer2_brightness = 11,
-    id_config_layer2_color = 12
+    id_config_layer2_color = 12,
+
+    #if WIN_LOCK_INDEX
+    id_config_win_key_enabled = 13,
+    id_config_win_key_brightness = 14,
+    id_config_win_key_color = 15,
+    #endif
+
 };
 
 
@@ -48,6 +58,13 @@ void eeconfig_init_user(void) {
     config.num_lock.s       = 255;
     config.num_lock.v       = 255;
     config.num_lock.enabled = true;
+
+    #if WIN_LOCK_INDEX
+    config.win_key.h       = 0;
+    config.win_key.s       = 255;
+    config.win_key.v       = 255;
+    config.win_key.enabled = true;
+    #endif
 
     config.layer1.h       = 85;
     config.layer1.s       = 255;
@@ -135,6 +152,24 @@ void config_set_value(uint8_t *data) {
             config.layer2.s = value_data[1];
             break;
         }
+
+    #if WIN_LOCK_INDEX
+        case id_config_win_key_enabled: {
+            config.win_key.enabled = value_data[0];
+            break;
+        }
+        case id_config_win_key_brightness: {
+            config.win_key.v = value_data[0];
+            break;
+        }
+        case id_config_win_key_color: {
+            config.win_key.h = value_data[0];
+            config.win_key.s = value_data[1];
+            break;
+        }
+
+    #endif
+
     }
 }
 
@@ -198,6 +233,23 @@ void config_get_value(uint8_t *data) {
             value_data[1] = config.layer2.s;
             break;
         }
+
+
+    #if WIN_LOCK_INDEX
+        case id_config_win_key_enabled: {
+            value_data[0] = config.win_key.enabled;
+            break;
+        }
+        case id_config_win_key_brightness: {
+            value_data[0] = config.win_key.v;
+            break;
+        }
+        case id_config_win_key_color: {
+            value_data[0] = config.win_key.h;
+            value_data[1] = config.win_key.s;
+            break;
+        }
+    #endif
     }
 }
 
@@ -282,9 +334,9 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_INDEX,rgb_color.r,rgb_color.g,rgb_color.b);
     }
     #if WIN_LOCK_INDEX
-    if (config.num_lock.enabled && keymap_config.no_gui)
+    if (config.win_key.enabled && keymap_config.no_gui)
     {
-        HSV config_color = {config.num_lock.h, config.num_lock.s, config.num_lock.v};
+        HSV config_color = {config.win_key.h, config.win_key.s, config.win_key.v};
         RGB rgb_color = hsv_to_rgb(config_color);
 
         RGB_MATRIX_INDICATOR_SET_COLOR(WIN_LOCK_INDEX,rgb_color.r,rgb_color.g,rgb_color.b);

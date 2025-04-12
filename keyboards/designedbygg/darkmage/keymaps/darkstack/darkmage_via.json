@@ -51,6 +51,27 @@
           ]
         },
         {
+          "label": "Win key",
+          "content": [
+            {
+              "label": "Enable",
+              "type": "toggle",
+              "content": ["id_config_win_key_enable", 0, 13]
+            },
+            {
+              "label": "Brightness",
+              "type": "range",
+              "options": [0, 255],
+              "content": ["id_config_win_key_brightness", 0, 14]
+            },
+            {
+              "label": "Color",
+              "type": "color",
+              "content": ["id_config_win_key_color", 0, 15]
+            }
+          ]
+        },
+        {
           "label": "Layer 1",
           "content": [
             {
