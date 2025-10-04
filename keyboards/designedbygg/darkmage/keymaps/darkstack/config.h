@@ -7,4 +7,3 @@
 #define NUM_LOCK_INDEX 14
 
 #define WIN_LOCK_INDEX 60
-#define EECONFIG_KB_DATA_SIZE 20

@@ -25,7 +25,8 @@
 #define GPIO_INPUT_PIN_DELAY 0
 
 /* Debug options */
-#define DEBUG_MATRIX_SCAN_RATE
+//#define DEBUG_MATRIX_SCAN_RATE
+
 
 /* RGB LED Config */
 #define SN32F2XX_RGB_MATRIX_ROW_PINS { A0, A2, A1, A3, A5, A4, A6, A8, A7, A9, A11, A10, A12, A14, A13}
