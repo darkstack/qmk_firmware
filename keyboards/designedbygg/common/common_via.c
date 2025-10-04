@@ -11,7 +11,9 @@ typedef struct _indicator_config_t {
     bool    enabled;
 } indicator_config;
 
-typedef struct _designed_by_gg_config_t {
+
+typedef union {
+    uint32_t raw;
     indicator_config caps_lock;
     indicator_config num_lock;
     #if WIN_LOCK_INDEX
@@ -19,10 +21,9 @@ typedef struct _designed_by_gg_config_t {
     #endif
     indicator_config layer1;
     indicator_config layer2;
-} designed_by_gg_config_t;
+} user_config_t;
 
-designed_by_gg_config_t config;
-
+user_config_t config;
 
 enum via_config_enums {
     id_config_caps_lock_enabled = 1,
@@ -48,6 +49,7 @@ enum via_config_enums {
 
 
 void eeconfig_init_user(void) {
+    config.raw = 0;
     // Default values
     config.caps_lock.h       = 0;
     config.caps_lock.s       = 255;
@@ -75,17 +77,17 @@ void eeconfig_init_user(void) {
     config.layer2.s       = 255;
     config.layer2.v       = 255;
     config.layer2.enabled = true;
-    eeconfig_update_kb_datablock(&config);
+    eeconfig_update_user(config.raw);
 }
 
 
 void keyboard_post_init_user(void) {
-    eeconfig_read_kb_datablock(&config);
+    config.raw = eeconfig_read_user();
 }
 
 
 void config_save(void) {
-    eeconfig_update_kb_datablock(&config);
+    eeconfig_update_user(config.raw);
 }
 
 #if VIA_ENABLE
